@@ -1,7 +1,6 @@
-# Meditations(WIP): Surprise yourself with your past thoughts
+# backburner(WIP): A way for your back-burner to interject into your life.
 
-This is an app I've been thinking about making for a while. Its purpose is to randomly notify the user of heuristics, tidbits of wisdom, etc.
-It also serves as a demonstration of my current understanding of Android architecture.
+This is an app I've been thinking about making for a while. Its purpose is to randomly notify the user of items left in the back-burner without desensitizing the user to notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture.
 
 ## General architecture
 
@@ -17,12 +16,10 @@ It also serves as a demonstration of my current understanding of Android archite
 
 ## TODO
 
-* [x] Integrate SQLDelight and create Meditations table + queries
-* [x] Implement end-to-end data flow for Meditations list screen (one time fetch)
-* [x] Implement Add Meditations screen
-* [x] Power Meditations list by observing changes to meditations table 
+* [ ] Integrate SQLDelight and create Item table + queries
+* [ ] Implement data flow for Items list screen 
+* [ ] Implement Add Item screen
 * [ ] Implement random notifications
-* [ ] Use Dagger to inject dependencies
 * [ ] Refine UX and UI
 * [ ] Break features into separate modules
-* [ ] Rename app, packages, etc. to backburner
+* [ ] Use Dagger to inject dependencies
