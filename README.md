@@ -16,9 +16,9 @@ This is an app I've been thinking about making for a while. Its purpose is to ra
 
 ## TODO
 
-* [ ] Integrate SQLDelight and create Item table + queries
-* [ ] Implement data flow for Items list screen 
-* [ ] Implement Add Item screen
+* [x] Integrate SQLDelight and create Item table + queries
+* [x] Implement data flow for Items list screen 
+* [x] Implement data flow for Add Item screen
 * [ ] Implement random notifications
 * [ ] Refine UX and UI
 * [ ] Break features into separate modules
