@@ -1,14 +1,14 @@
-CREATE TABLE meditation (
+CREATE TABLE item (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     text TEXT NOT NULL,
     created_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
 );
 
-insertMeditation:
-INSERT INTO meditation(text)
+insertItem:
+INSERT INTO item(text)
 VALUES (?);
 
 selectAll:
 SELECT *
-FROM meditation
+FROM item
 ORDER BY created_at DESC;

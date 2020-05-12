@@ -25,7 +25,7 @@ class MeditationsViewModel(val interactors: Interactors) : VM() {
         { state, msg ->
             when (msg) {
                 is Msg.MeditationsLoaded -> {
-                    val items = msg.meditations
+                    val items = msg.items
                         .map {
                             UI.Item(
                                 it.id,

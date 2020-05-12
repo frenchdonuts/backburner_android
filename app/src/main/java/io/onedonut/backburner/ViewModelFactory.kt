@@ -8,7 +8,7 @@ import io.onedonut.backburner.add_meditation.interactors.InteractorsImpl
 import io.onedonut.backburner.add_meditation.vm.AddMeditationViewModel
 import io.onedonut.backburner.add_meditation.vm.VM
 import io.onedonut.backburner.meditations.MeditationsViewModel
-import io.onedonut.backburner.repository.MeditationRepositoryImpl
+import io.onedonut.backburner.repository.ItemRepositoryImpl
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory private constructor(private val context: Context) : ViewModelProvider.Factory {
@@ -16,7 +16,7 @@ class ViewModelFactory private constructor(private val context: Context) : ViewM
         if (modelClass == io.onedonut.backburner.meditations.VM::class.java)
             return MeditationsViewModel(
                 io.onedonut.backburner.meditations.InteractorsImpl(
-                    MeditationRepositoryImpl(
+                    ItemRepositoryImpl(
                         App.db
                     )
                 )
@@ -24,7 +24,7 @@ class ViewModelFactory private constructor(private val context: Context) : ViewM
         else if (modelClass == VM::class.java)
             return AddMeditationViewModel(
                 InteractorsImpl(
-                    MeditationRepositoryImpl(
+                    ItemRepositoryImpl(
                         App.db
                     )
                 )
