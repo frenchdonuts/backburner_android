@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import io.onedonut.backburner.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
@@ -55,6 +57,7 @@ class NotesFragment : Fragment(), UI {
 
         viewModel.processEvents(events())
         binding.rvMeditations.adapter = adapter
+        binding.rvMeditations.layoutManager = GridLayoutManager(context, 2)
         activity?.findViewById<FloatingActionButton>(R.id.fab)?.let {
             it.setOnClickListener { _ ->
                 navigateToAddMeditation()
