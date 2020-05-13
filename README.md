@@ -1,6 +1,6 @@
-# backburner(WIP): A way for your back-burner to interject into your life.
+# backburner(WIP)
 
-This is an app I've been thinking about making for a while. Its purpose is to randomly notify the user of items left in the back-burner without desensitizing the user to notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture.
+This is an app I've been thinking about making for a while. Its purpose is to randomly notify the user of notes left on the back-burner without desensitizing the user to the notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture.
 
 ## General architecture
 
@@ -16,12 +16,12 @@ This is an app I've been thinking about making for a while. Its purpose is to ra
 
 ## TODO
 
-* [x] Integrate SQLDelight and create Item table + queries
-* [x] Implement data flow for Items list screen 
-* [x] Implement data flow for Add Item screen
+* [x] Integrate SQLDelight and create Note table + queries
+* [x] Implement data flow for Notes screen 
+* [x] Implement data flow for WriteNote screen
 * [ ] Implement random notifications
 * [ ] Refine UX and UI
 * [ ] Break features into separate modules
 * [ ] Use Dagger to inject dependencies
-* [ ] Import Google Keep notes
+* [ ] Import pinned Google Keep notes
 * [ ] Allow User to customize teh range of time interval between notifications.
