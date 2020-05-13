@@ -26,6 +26,18 @@ class NoteRepositoryImpl(val db: Database):
         }
     }
 
+    override fun edit(id: Long, newText: String): Completable {
+        return Completable.fromCallable {
+            queries.updateNote(newText, id)
+        }
+    }
+
+    override fun delete(id: Long): Completable {
+        return Completable.fromCallable {
+            queries.deleteNote(id)
+        }
+    }
+
     companion object {
         private val TAG = "MeditationRepoImpl"
     }
