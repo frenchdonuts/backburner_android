@@ -18,7 +18,7 @@ This is an app I've been thinking about making for a while. Its purpose is to ra
 
 * [x] Integrate SQLDelight and create Note table + queries
 * [x] Implement data flow for Notes screen 
-* [x] Implement data flow for WriteNote screen
+* [ ] Implement data flow for WriteNote screen
 * [ ] Implement random notifications
 * [ ] Refine UX and UI
 * [ ] Break features into separate modules
