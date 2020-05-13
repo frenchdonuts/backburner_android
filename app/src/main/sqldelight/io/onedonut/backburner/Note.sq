@@ -8,6 +8,15 @@ insertNote:
 INSERT INTO note(text)
 VALUES (?);
 
+updateNote:
+UPDATE note
+SET text = :text
+WHERE id = :id;
+
+deleteNote:
+DELETE FROM note
+WHERE id = id;
+
 selectAll:
 SELECT *
 FROM note
