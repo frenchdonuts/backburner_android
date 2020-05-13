@@ -15,7 +15,7 @@ WHERE id = :id;
 
 deleteNote:
 DELETE FROM note
-WHERE id = id;
+WHERE id = :id;
 
 selectAll:
 SELECT *
