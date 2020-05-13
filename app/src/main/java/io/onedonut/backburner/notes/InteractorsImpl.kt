@@ -1,13 +1,13 @@
-package io.onedonut.backburner.meditations
+package io.onedonut.backburner.notes
 
-import io.onedonut.backburner.repository.ItemRepository
+import io.onedonut.backburner.repository.NoteRepository
 import io.reactivex.Observable
 
-class InteractorsImpl(val itemRepo: ItemRepository) :
+class InteractorsImpl(val noteRepo: NoteRepository) :
     Interactors {
 
     override fun meditations(): Observable<VM.Msg> {
-        return itemRepo.all()
+        return noteRepo.all()
             .map { VM.Msg.MeditationsLoaded(it) }
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.onedonut.backburner.add_meditation.ui.AddMeditationFragment">
+    tools:context="io.onedonut.backburner.write_note.ui.WriteNoteFragment">
 
     <EditText
         android:id="@+id/etMeditation"
@@ -20,7 +20,7 @@
         android:id="@+id/btAddMeditation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_meditation"
+        android:text="@string/add_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

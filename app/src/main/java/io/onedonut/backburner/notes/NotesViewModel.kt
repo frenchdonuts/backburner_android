@@ -1,4 +1,4 @@
-package io.onedonut.backburner.meditations
+package io.onedonut.backburner.notes
 
 import arrow.syntax.function.pipe
 import io.reactivex.Observable
@@ -7,7 +7,7 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 
-class MeditationsViewModel(val interactors: Interactors) : VM() {
+class NotesViewModel(val interactors: Interactors) : VM() {
 
     private fun toMsgs(events: Observable<UI.Event>): Observable<Msg> = events.publish { shared ->
         Observable.merge(listOf(
@@ -25,7 +25,7 @@ class MeditationsViewModel(val interactors: Interactors) : VM() {
         { state, msg ->
             when (msg) {
                 is Msg.MeditationsLoaded -> {
-                    val items = msg.items
+                    val items = msg.notes
                         .map {
                             UI.Item(
                                 it.id,

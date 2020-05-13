@@ -1,6 +1,6 @@
-package io.onedonut.backburner.add_meditation.interactors
+package io.onedonut.backburner.write_note.interactors
 
-import io.onedonut.backburner.add_meditation.vm.VM
+import io.onedonut.backburner.write_note.vm.VM
 import io.reactivex.Single
 
 interface Interactors {

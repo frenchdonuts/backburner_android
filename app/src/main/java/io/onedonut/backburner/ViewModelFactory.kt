@@ -4,27 +4,27 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import arrow.syntax.function.memoize
-import io.onedonut.backburner.add_meditation.interactors.InteractorsImpl
-import io.onedonut.backburner.add_meditation.vm.AddMeditationViewModel
-import io.onedonut.backburner.add_meditation.vm.VM
-import io.onedonut.backburner.meditations.MeditationsViewModel
-import io.onedonut.backburner.repository.ItemRepositoryImpl
+import io.onedonut.backburner.write_note.interactors.InteractorsImpl
+import io.onedonut.backburner.write_note.vm.WriteNoteViewModel
+import io.onedonut.backburner.write_note.vm.VM
+import io.onedonut.backburner.notes.NotesViewModel
+import io.onedonut.backburner.repository.NoteRepositoryImpl
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory private constructor(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass == io.onedonut.backburner.meditations.VM::class.java)
-            return MeditationsViewModel(
-                io.onedonut.backburner.meditations.InteractorsImpl(
-                    ItemRepositoryImpl(
+        if (modelClass == io.onedonut.backburner.notes.VM::class.java)
+            return NotesViewModel(
+                io.onedonut.backburner.notes.InteractorsImpl(
+                    NoteRepositoryImpl(
                         App.db
                     )
                 )
             ) as T
         else if (modelClass == VM::class.java)
-            return AddMeditationViewModel(
+            return WriteNoteViewModel(
                 InteractorsImpl(
-                    ItemRepositoryImpl(
+                    NoteRepositoryImpl(
                         App.db
                     )
                 )

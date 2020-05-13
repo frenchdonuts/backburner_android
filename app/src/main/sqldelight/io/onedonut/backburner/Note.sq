@@ -1,14 +1,14 @@
-CREATE TABLE item (
+CREATE TABLE note (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     text TEXT NOT NULL,
     created_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
 );
 
-insertItem:
-INSERT INTO item(text)
+insertNote:
+INSERT INTO note(text)
 VALUES (?);
 
 selectAll:
 SELECT *
-FROM item
+FROM note
 ORDER BY created_at DESC;

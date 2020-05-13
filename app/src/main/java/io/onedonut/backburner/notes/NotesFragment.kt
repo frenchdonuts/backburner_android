@@ -1,4 +1,4 @@
-package io.onedonut.backburner.meditations
+package io.onedonut.backburner.notes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,21 +10,21 @@ import androidx.navigation.fragment.findNavController
 import io.onedonut.backburner.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
-import io.onedonut.backburner.databinding.FragmentMeditationsBinding
+import io.onedonut.backburner.databinding.FragmentNotesBinding
 import io.reactivex.Observable
 import io.onedonut.backburner.R
 
 /**
  * Fragment that displays the User's list of Meditations
  */
-class MeditationsFragment : Fragment(), UI {
+class NotesFragment : Fragment(), UI {
 
     private val viewModel: VM by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProvider(this, ViewModelFactory.instance(requireContext()))
             .get(VM::class.java)
     }
-    private val adapter: MeditationsAdapter =
-        MeditationsAdapter()
+    private val adapter: NotesAdapter =
+        NotesAdapter()
 
     override fun events(): Observable<UI.Event> =
         Observable.merge(
@@ -46,7 +46,7 @@ class MeditationsFragment : Fragment(), UI {
         savedInstanceState: Bundle?
     ): View? {
         render(viewModel.states())
-        _binding = FragmentMeditationsBinding.inflate(inflater, container, false)
+        _binding = FragmentNotesBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
@@ -74,7 +74,7 @@ class MeditationsFragment : Fragment(), UI {
     companion object {
         private val TAG = "MeditationsFragment"
     }
-    private var _binding: FragmentMeditationsBinding? = null
+    private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
 
 }

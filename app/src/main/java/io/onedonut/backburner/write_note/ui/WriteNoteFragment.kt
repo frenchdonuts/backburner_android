@@ -1,4 +1,4 @@
-package io.onedonut.backburner.add_meditation.ui
+package io.onedonut.backburner.write_note.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jakewharton.rxbinding2.view.clicks
 import io.onedonut.backburner.ViewModelFactory
-import io.onedonut.backburner.add_meditation.vm.VM
+import io.onedonut.backburner.write_note.vm.VM
 import com.uber.autodispose.android.lifecycle.autoDispose
-import io.onedonut.backburner.databinding.FragmentAddMeditationBinding
+import io.onedonut.backburner.databinding.FragmentWriteNoteBinding
 import io.reactivex.Observable
 
-class AddMeditationFragment : UI, Fragment() {
+class WriteNoteFragment : UI, Fragment() {
 
     private val viewModel: VM by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProvider(this, ViewModelFactory.instance(requireContext()))
@@ -38,12 +38,12 @@ class AddMeditationFragment : UI, Fragment() {
             .subscribe()
     }
 
-    private lateinit var binding: FragmentAddMeditationBinding
+    private lateinit var binding: FragmentWriteNoteBinding
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddMeditationBinding.inflate(inflater, container, false)
+        binding = FragmentWriteNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,13 +1,13 @@
-package io.onedonut.backburner.add_meditation.vm
+package io.onedonut.backburner.write_note.vm
 
 import arrow.syntax.function.pipe
-import io.onedonut.backburner.add_meditation.interactors.Interactors
-import io.onedonut.backburner.add_meditation.ui.UI
+import io.onedonut.backburner.write_note.interactors.Interactors
+import io.onedonut.backburner.write_note.ui.UI
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
 
-class AddMeditationViewModel(val interactors: Interactors) : VM() {
+class WriteNoteViewModel(val interactors: Interactors) : VM() {
 
     private fun toMsgs(events: Observable<UI.Event>): Observable<Msg> = events.publish { shared ->
         Observable.merge(listOf(

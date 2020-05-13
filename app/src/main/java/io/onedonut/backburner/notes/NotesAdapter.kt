@@ -1,4 +1,4 @@
-package io.onedonut.backburner.meditations
+package io.onedonut.backburner.notes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.onedonut.backburner.R
 
-class MeditationsAdapter : ListAdapter<UI.Item, MeditationItemViewHolder>(
+class NotesAdapter : ListAdapter<UI.Item, NoteItemViewHolder>(
     DiffCallback
 ) {
 
-    override fun onBindViewHolder(holder: MeditationItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeditationItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.meditation_item, parent, false)
-        return MeditationItemViewHolder(view)
+            .inflate(R.layout.note_item, parent, false)
+        return NoteItemViewHolder(view)
     }
 
     companion object {

@@ -1,10 +1,10 @@
 package io.onedonut.backburner.repository
 
-import io.onedonut.backburner.model.Item
+import io.onedonut.backburner.model.Note
 import io.reactivex.Completable
 import io.reactivex.Observable
 
-interface ItemRepository {
-    fun all(): Observable<List<Item>>
+interface NoteRepository {
+    fun all(): Observable<List<Note>>
     fun create(text: String): Completable
 }

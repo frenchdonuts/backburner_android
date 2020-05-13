@@ -1,4 +1,4 @@
-package io.onedonut.backburner.add_meditation.ui
+package io.onedonut.backburner.write_note.ui
 
 interface UI:
     io.onedonut.backburner.base.UI<UI.Event, UI.State> {

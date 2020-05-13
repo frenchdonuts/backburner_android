@@ -1,4 +1,4 @@
-package io.onedonut.backburner.meditations
+package io.onedonut.backburner.notes
 
 import io.reactivex.Observable
 

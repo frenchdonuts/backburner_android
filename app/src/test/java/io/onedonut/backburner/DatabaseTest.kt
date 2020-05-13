@@ -10,7 +10,7 @@ class DatabaseTest {
         Database.Schema.create(this)
     }
 
-    private val queries = Database(inMemorySQLDriver).meditationQueries
+    private val queries = Database(inMemorySQLDriver).noteQueries
 
     @Test
     fun smokeTest() {
@@ -26,7 +26,7 @@ class DatabaseTest {
                 |I'll meet you there. When the soul lies down in that grass the 
                 |world is too full to talk about.
             """.trimMargin()
-        queries.insertMeditation(rumiQuote)
+        queries.insertNote(rumiQuote)
 
         val oneItem = queries.selectAll().executeAsList()
         assertEquals(oneItem.size, 1)

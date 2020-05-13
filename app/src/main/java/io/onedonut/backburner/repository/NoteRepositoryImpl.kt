@@ -3,26 +3,26 @@ package io.onedonut.backburner.repository
 import com.squareup.sqldelight.runtime.rx.asObservable
 import com.squareup.sqldelight.runtime.rx.mapToList
 import io.onedonut.backburner.Database
-import io.onedonut.backburner.model.Item
+import io.onedonut.backburner.model.Note
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class ItemRepositoryImpl(val db: Database):
-    ItemRepository {
-    private val queries = db.itemQueries
+class NoteRepositoryImpl(val db: Database):
+    NoteRepository {
+    private val queries = db.noteQueries
 
-    override fun all(): Observable<List<Item>> {
+    override fun all(): Observable<List<Note>> {
         return queries
             .selectAll()
             .asObservable(Schedulers.io())
             .mapToList()
-            .map { it.map { Item.from(it) }  }
+            .map { it.map { Note.from(it) }  }
     }
 
     override fun create(text: String): Completable {
         return Completable.fromCallable {
-            queries.insertItem(text)
+            queries.insertNote(text)
         }
     }
 
