@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.jakewharton.rxbinding2.view.clicks
-import io.onedonut.backburner.ViewModelFactory
 import io.onedonut.backburner.write_note.vm.VM
 import com.uber.autodispose.android.lifecycle.autoDispose
 import io.onedonut.backburner.App
