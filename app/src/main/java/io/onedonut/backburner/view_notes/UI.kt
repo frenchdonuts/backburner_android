@@ -1,4 +1,4 @@
-package io.onedonut.backburner.notes
+package io.onedonut.backburner.view_notes
 
 interface UI:
     io.onedonut.backburner.base.UI<UI.Event, UI.State> {

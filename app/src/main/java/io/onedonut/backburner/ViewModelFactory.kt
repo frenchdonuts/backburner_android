@@ -7,15 +7,15 @@ import arrow.syntax.function.memoize
 import io.onedonut.backburner.write_note.interactors.InteractorsImpl
 import io.onedonut.backburner.write_note.vm.WriteNoteViewModel
 import io.onedonut.backburner.write_note.vm.VM
-import io.onedonut.backburner.notes.NotesViewModel
+import io.onedonut.backburner.view_notes.ViewNotesViewModel
 import io.onedonut.backburner.repository.NoteRepositoryImpl
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory private constructor(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass == io.onedonut.backburner.notes.VM::class.java)
-            return NotesViewModel(
-                io.onedonut.backburner.notes.InteractorsImpl(
+        if (modelClass == io.onedonut.backburner.view_notes.VM::class.java)
+            return ViewNotesViewModel(
+                io.onedonut.backburner.view_notes.InteractorsImpl(
                     NoteRepositoryImpl(
                         App.db
                     )

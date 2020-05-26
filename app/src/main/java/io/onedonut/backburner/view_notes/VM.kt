@@ -1,4 +1,4 @@
-package io.onedonut.backburner.notes
+package io.onedonut.backburner.view_notes
 
 import androidx.lifecycle.ViewModel
 import io.onedonut.backburner.base.VM

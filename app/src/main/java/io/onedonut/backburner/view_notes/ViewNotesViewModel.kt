@@ -1,4 +1,4 @@
-package io.onedonut.backburner.notes
+package io.onedonut.backburner.view_notes
 
 import arrow.syntax.function.pipe
 import io.reactivex.Observable
@@ -7,7 +7,7 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 
-class NotesViewModel(val interactors: Interactors) : VM() {
+class ViewNotesViewModel(val interactors: Interactors) : VM() {
 
     private fun toMsgs(events: Observable<UI.Event>): Observable<Msg> = events.publish { shared ->
         Observable.merge(listOf(

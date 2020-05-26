@@ -1,4 +1,4 @@
-package io.onedonut.backburner.notes
+package io.onedonut.backburner.view_notes
 
 import io.onedonut.backburner.repository.NoteRepository
 import io.reactivex.Observable

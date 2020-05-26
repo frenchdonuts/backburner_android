@@ -1,4 +1,4 @@
-package io.onedonut.backburner.notes
+package io.onedonut.backburner.view_notes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.onedonut.backburner.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
@@ -19,7 +18,7 @@ import io.onedonut.backburner.R
 /**
  * Fragment that displays the User's list of Meditations
  */
-class NotesFragment : Fragment(), UI {
+class ViewNotesFragment : Fragment(), UI {
 
     private val viewModel: VM by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProvider(this, ViewModelFactory.instance(requireContext()))
