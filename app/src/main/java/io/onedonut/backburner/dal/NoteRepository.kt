@@ -1,4 +1,4 @@
-package io.onedonut.backburner.repository
+package io.onedonut.backburner.dal
 
 import io.onedonut.backburner.model.Note
 import io.reactivex.Completable

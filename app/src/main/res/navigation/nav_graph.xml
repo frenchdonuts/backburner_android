@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MeditationsFragment"
-        android:name="io.onedonut.backburner.view_notes.ViewNotesFragment"
+        android:name="io.onedonut.backburner.view_notes.ui.ViewNotesFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_notes">
 

@@ -1,9 +1,11 @@
-package io.onedonut.backburner.view_notes
+package io.onedonut.backburner.view_notes.interactors
 
-import io.onedonut.backburner.repository.NoteRepository
+import io.onedonut.backburner.dal.NoteRepository
+import io.onedonut.backburner.view_notes.vm.VM
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class InteractorsImpl(val noteRepo: NoteRepository) :
+class InteractorsImpl @Inject constructor(val noteRepo: NoteRepository) :
     Interactors {
 
     override fun meditations(): Observable<VM.Msg> {

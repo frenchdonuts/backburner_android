@@ -6,8 +6,9 @@ import io.onedonut.backburner.write_note.ui.UI
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class WriteNoteViewModel(val interactors: Interactors) : VM() {
+class WriteNoteViewModel @Inject constructor(val interactors: Interactors) : VM() {
 
     private fun toMsgs(events: Observable<UI.Event>): Observable<Msg> = events.publish { shared ->
         Observable.merge(listOf(

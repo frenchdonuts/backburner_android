@@ -5,6 +5,10 @@ import com.squareup.sqldelight.android.AndroidSqliteDriver
 
 class App : Application() {
 
+    val appComponent by lazy {
+        DaggerAppComponent.factory().create(applicationContext, db)
+    }
+
     companion object {
         lateinit var db: Database
             private set

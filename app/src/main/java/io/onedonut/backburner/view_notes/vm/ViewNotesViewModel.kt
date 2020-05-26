@@ -1,13 +1,16 @@
-package io.onedonut.backburner.view_notes
+package io.onedonut.backburner.view_notes.vm
 
 import arrow.syntax.function.pipe
+import io.onedonut.backburner.view_notes.interactors.Interactors
+import io.onedonut.backburner.view_notes.ui.UI
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class ViewNotesViewModel(val interactors: Interactors) : VM() {
+class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM() {
 
     private fun toMsgs(events: Observable<UI.Event>): Observable<Msg> = events.publish { shared ->
         Observable.merge(listOf(

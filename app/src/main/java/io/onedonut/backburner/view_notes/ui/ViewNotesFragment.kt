@@ -1,28 +1,31 @@
-package io.onedonut.backburner.view_notes
+package io.onedonut.backburner.view_notes.ui
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import io.onedonut.backburner.ViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
-import io.onedonut.backburner.databinding.FragmentNotesBinding
-import io.reactivex.Observable
+import io.onedonut.backburner.App
 import io.onedonut.backburner.R
+import io.onedonut.backburner.base.fragmentViewModels
+import io.onedonut.backburner.databinding.FragmentNotesBinding
+import io.onedonut.backburner.view_notes.ViewNotesComponent
+import io.onedonut.backburner.view_notes.vm.VM
+import io.reactivex.Observable
 
 /**
- * Fragment that displays the User's list of Meditations
+ * Fragment that displays the User's list of Notes
  */
 class ViewNotesFragment : Fragment(), UI {
 
-    private val viewModel: VM by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProvider(this, ViewModelFactory.instance(requireContext()))
-            .get(VM::class.java)
+    private lateinit var featureComponent: ViewNotesComponent
+    private val viewModel: VM by fragmentViewModels {
+        featureComponent.vm().get()
     }
     private val adapter: NotesAdapter =
         NotesAdapter()
@@ -40,6 +43,14 @@ class ViewNotesFragment : Fragment(), UI {
             .subscribe { meditationItems ->
                 adapter.submitList(meditationItems)
             }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        featureComponent = (requireActivity().application as App)
+            .appComponent
+            .viewNotesComponent()
+            .create()
     }
 
     override fun onCreateView(

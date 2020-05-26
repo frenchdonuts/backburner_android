@@ -1,8 +1,9 @@
-package io.onedonut.backburner.view_notes
+package io.onedonut.backburner.view_notes.vm
 
 import androidx.lifecycle.ViewModel
 import io.onedonut.backburner.base.VM
 import io.onedonut.backburner.model.Note
+import io.onedonut.backburner.view_notes.ui.UI
 
 abstract class VM: VM<UI.Event, UI.State>, ViewModel() {
     //

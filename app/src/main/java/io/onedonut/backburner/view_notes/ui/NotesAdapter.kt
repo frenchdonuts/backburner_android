@@ -1,4 +1,4 @@
-package io.onedonut.backburner.view_notes
+package io.onedonut.backburner.view_notes.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

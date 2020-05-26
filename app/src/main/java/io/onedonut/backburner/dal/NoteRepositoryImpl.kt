@@ -1,4 +1,4 @@
-package io.onedonut.backburner.repository
+package io.onedonut.backburner.dal
 
 import com.squareup.sqldelight.runtime.rx.asObservable
 import com.squareup.sqldelight.runtime.rx.mapToList
