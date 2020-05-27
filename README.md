@@ -1,6 +1,6 @@
 # backburner(WIP)
 
-This is an app I've been thinking about making for a while. Its purpose is to randomly notify the user of notes left on the back-burner without desensitizing the user to the notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture.
+This is an app I've been thinking about making for a while. Its purpose is to remind the user of notes left on the back-burner without desensitizing the user to the notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture.
 
 ## General architecture
 
