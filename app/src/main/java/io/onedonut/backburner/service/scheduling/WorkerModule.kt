@@ -17,12 +17,12 @@ interface WorkerModule {
     @Binds
     @IntoMap
     @WorkerKey(RemindUserWorker::class)
-    fun bindShowNotificationWorker(factory: RemindUserWorker.Factory): IWorkerFactory<out ListenableWorker>
+    fun bindRemindUserWorker(factory: RemindUserWorker.Factory): IWorkerFactory<out ListenableWorker>
 
     @Binds
     @IntoMap
     @WorkerKey(ScheduleReminderWorker::class)
-    fun bindScheduleNotificationWorker(factory: ScheduleReminderWorker.Factory): IWorkerFactory<out ListenableWorker>
+    fun bindScheduleReminderWorker(factory: ScheduleReminderWorker.Factory): IWorkerFactory<out ListenableWorker>
 
     @Module
     object WorkerManagerModule {
