@@ -63,6 +63,6 @@ class ViewNotesActivity: AppCompatActivity(), UI {
 
     private lateinit var binding: ActivityNotesBinding
     companion object {
-        private val TAG = "MeditationsFragment"
+        private val TAG = "ViewNotesActivity"
     }
 }
