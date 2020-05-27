@@ -1,38 +1,31 @@
 package io.onedonut.backburner.service.scheduling
 
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.workDataOf
-import io.onedonut.backburner.service.scheduling.worker.ScheduleNotificationWorker
-import io.onedonut.backburner.service.scheduling.worker.ShowNotificationWorker
+import androidx.work.*
+import com.google.common.util.concurrent.ListenableFuture
+import io.onedonut.backburner.service.scheduling.worker.ScheduleReminderWorker
+import io.onedonut.backburner.service.scheduling.worker.RemindUserWorker
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlin.random.Random
 
 class Scheduler @Inject constructor(private val workManager: WorkManager) {
 
-    fun scheduleRandomNotification(text: String) {
-        scheduleNotification(text, Random.nextLong(7, 15))
-    }
-
-    fun scheduleNotification(text: String, daysFromNow: Long) {
-        val inputData = workDataOf(
-            ShowNotificationWorker.InputData.KEY_NOTIFICATION_TEXT to text
-        )
-        val showNotificationRequest = OneTimeWorkRequestBuilder<ShowNotificationWorker>()
+    fun scheduleReminder(): ListenableFuture<Operation.State.SUCCESS> {
+        TODO("Logic only partially implemented")
+        // TODO: Check if RemindUserWorker is already scheduled. If not, schedule it.
+        val daysFromNow = Random.nextLong(7, 15)
+        val remindUserRequest = OneTimeWorkRequestBuilder<RemindUserWorker>()
             .setInitialDelay(daysFromNow, TimeUnit.DAYS)
-            .setInputData(inputData)
             .build()
-        workManager.enqueue(showNotificationRequest)
+        return workManager.enqueue(remindUserRequest).result
     }
 
-    fun makeSureNotificationIsScheduled() {
-        val scheduleScheduleNotificationRequest =
-            PeriodicWorkRequestBuilder<ScheduleNotificationWorker>(7, TimeUnit.DAYS)
-                .build()
-
-        workManager.enqueue(scheduleScheduleNotificationRequest)
+    fun makeSureReminderIsScheduled() {
+        TODO("Logic only partially implemented")
+        // TODO: Check if SchedulerReminderWorker is already scheduled. If not, schedule it.
+        workManager.enqueue(
+            PeriodicWorkRequestBuilder<ScheduleReminderWorker>(7, TimeUnit.DAYS).build()
+        )
     }
 
 }

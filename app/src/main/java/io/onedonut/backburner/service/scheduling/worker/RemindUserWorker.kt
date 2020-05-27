@@ -7,18 +7,19 @@ import io.onedonut.backburner.service.Notifier
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ShowNotificationWorker(
+class RemindUserWorker(
     appContext: Context,
     workerParams: WorkerParameters,
     private val notifier: Notifier
 ) : Worker(appContext, workerParams) {
 
     override fun doWork(): Result {
+        TODO("Only partially implemented")
+        // TODO: Query Repo for a random note to show
         val notificationText = inputData.getString(InputData.KEY_NOTIFICATION_TEXT)
         notificationText?.let {
             notifier.notify(it)
         }
-        TODO("Return Result")
     }
 
     class InputData private constructor() {
@@ -30,9 +31,9 @@ class ShowNotificationWorker(
     class Factory @Inject constructor(
         private val context: Provider<Context>,
         private val notifier: Provider<Notifier>
-    ) : IWorkerFactory<ShowNotificationWorker> {
-        override fun create(params: WorkerParameters): ShowNotificationWorker {
-            return ShowNotificationWorker(
+    ) : IWorkerFactory<RemindUserWorker> {
+        override fun create(params: WorkerParameters): RemindUserWorker {
+            return RemindUserWorker(
                 context.get(),
                 params,
                 notifier.get()
