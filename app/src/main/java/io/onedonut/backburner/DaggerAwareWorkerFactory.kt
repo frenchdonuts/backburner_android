@@ -7,7 +7,9 @@ import androidx.work.WorkerParameters
 import io.onedonut.backburner.service.scheduling.worker.IWorkerFactory
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
+@Singleton
 class DaggerAwareWorkerFactory @Inject constructor(
     private val workerFactoryMap: Map<Class<out ListenableWorker>, @JvmSuppressWildcards Provider<IWorkerFactory<out ListenableWorker>>>
 ): WorkerFactory() {
