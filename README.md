@@ -21,7 +21,6 @@ This is an app I've been thinking about making for a while. Its purpose is to ra
 * [ ] Implement data flow for WriteNote screen
 * [ ] Implement random notifications
 * [ ] Refine UX and UI
-* [ ] Break features into separate modules
-* [ ] Use Dagger to inject dependencies
+* [x] Use Dagger to inject dependencies
 * [ ] Import pinned Google Keep notes
-* [ ] Allow User to customize teh range of time interval between notifications.
+* [ ] Allow User to customize the range of time interval between notifications.
