@@ -1,25 +1,33 @@
 package io.onedonut.backburner
 
-import android.app.Application
-import com.squareup.sqldelight.android.AndroidSqliteDriver
+import androidx.work.Configuration
+import androidx.work.WorkManager
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import javax.inject.Inject
 
-class App : Application() {
+class App : DaggerApplication() {
 
     val appComponent by lazy {
-        DaggerAppComponent.factory().create(applicationContext, db)
+        DaggerAppComponent.factory().create(
+            applicationContext
+        )
     }
+    @Inject lateinit var workerFactory: DaggerAwareWorkerFactory
 
-    companion object {
-        lateinit var db: Database
-            private set
-    }
     override fun onCreate() {
         super.onCreate()
-        db = Database(
-            AndroidSqliteDriver(
-                Database.Schema,
-                applicationContext,
-                "backburner.db"
-        ))
+        configureWorkerFactory()
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return appComponent//DaggerAppComponent.factory().create(applicationContext)
+    }
+
+    private fun configureWorkerFactory() {
+        val config = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
+        WorkManager.initialize(this, config)
     }
 }

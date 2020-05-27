@@ -8,7 +8,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class NoteRepositoryImpl(val db: Database):
+class NoteRepositoryImpl(db: Database):
     NoteRepository {
     private val queries = db.noteQueries
 
