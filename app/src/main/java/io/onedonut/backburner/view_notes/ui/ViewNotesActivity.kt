@@ -7,6 +7,7 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
 import io.onedonut.backburner.App
@@ -43,7 +44,10 @@ class ViewNotesActivity: AppCompatActivity(), UI {
 
     private fun setupViews() {
         rvNotes.adapter = adapter
-        rvNotes.layoutManager = GridLayoutManager(this, 2)
+        rvNotes.layoutManager = StaggeredGridLayoutManager(
+            2,
+            StaggeredGridLayoutManager.VERTICAL
+        )
         fab.setOnClickListener {
             val intent = Intent(this, WriteNoteActivity::class.java)
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
