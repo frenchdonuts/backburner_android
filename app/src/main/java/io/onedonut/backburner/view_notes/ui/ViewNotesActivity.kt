@@ -1,15 +1,20 @@
 package io.onedonut.backburner.view_notes.ui
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uber.autodispose.android.lifecycle.autoDispose
 import io.onedonut.backburner.App
 import io.onedonut.backburner.base.createViewModel
 import io.onedonut.backburner.databinding.ActivityNotesBinding
 import io.onedonut.backburner.view_notes.ViewNotesComponent
 import io.onedonut.backburner.view_notes.vm.VM
+import io.onedonut.backburner.write_note.ui.WriteNoteActivity
 import io.reactivex.Observable
 
 class ViewNotesActivity: AppCompatActivity(), UI {
@@ -18,6 +23,8 @@ class ViewNotesActivity: AppCompatActivity(), UI {
         get() = binding.rvNotes
     private val adapter: NotesAdapter =
         NotesAdapter()
+    private val fab: FloatingActionButton
+        get() = binding.fab
 
     override fun events(): Observable<UI.Event> =
         Observable.merge(
@@ -37,6 +44,10 @@ class ViewNotesActivity: AppCompatActivity(), UI {
     private fun setupViews() {
         rvNotes.adapter = adapter
         rvNotes.layoutManager = GridLayoutManager(this, 2)
+        fab.setOnClickListener {
+            val intent = Intent(this, WriteNoteActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
 
     private fun connectViewModel() {
