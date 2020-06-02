@@ -3,9 +3,7 @@ package io.onedonut.backburner.view_notes.ui
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,6 +15,7 @@ import io.onedonut.backburner.view_notes.ViewNotesComponent
 import io.onedonut.backburner.view_notes.vm.VM
 import io.onedonut.backburner.write_note.ui.WriteNoteActivity
 import io.reactivex.Observable
+
 
 class ViewNotesActivity: AppCompatActivity(), UI {
 
