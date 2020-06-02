@@ -8,7 +8,7 @@ import io.onedonut.backburner.view_notes.ui.UI
 abstract class VM: VM<UI.Event, UI.State>, ViewModel() {
     //
     sealed class Msg {
-        data class MeditationsLoaded(val notes: List<Note>) : Msg()
+        data class NotesLoaded(val notes: List<Note>) : Msg()
         object NoOp : Msg()
     }
 

@@ -27,7 +27,7 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
         State(),
         { state, msg ->
             when (msg) {
-                is Msg.MeditationsLoaded -> {
+                is Msg.NotesLoaded -> {
                     val items = msg.notes
                         .map {
                             UI.Item(

@@ -10,7 +10,7 @@ class InteractorsImpl @Inject constructor(val noteRepo: NoteRepository) :
 
     override fun meditations(): Observable<VM.Msg> {
         return noteRepo.all()
-            .map { VM.Msg.MeditationsLoaded(it) }
+            .map { VM.Msg.NotesLoaded(it) }
     }
 
     companion object {
