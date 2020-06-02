@@ -3,10 +3,12 @@ package io.onedonut.backburner.view_notes.ui
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jakewharton.rxbinding2.widget.textChanges
 import com.uber.autodispose.android.lifecycle.autoDispose
 import io.onedonut.backburner.App
 import io.onedonut.backburner.base.createViewModel
@@ -19,6 +21,8 @@ import io.reactivex.Observable
 
 class ViewNotesActivity: AppCompatActivity(), UI {
 
+    private val etSearch: EditText
+        get() = binding.etSearch
     private val rvNotes: RecyclerView
         get() = binding.rvNotes
     private val adapter: NotesAdapter =
@@ -29,7 +33,8 @@ class ViewNotesActivity: AppCompatActivity(), UI {
     override fun events(): Observable<UI.Event> =
         Observable.merge(
             listOf(
-                Observable.just(UI.Event.UiInitialized)
+                Observable.just(UI.Event.UiInitialized),
+                etSearch.textChanges().map { UI.Event.SearchTextChanged(it) }
             )
         )
 
