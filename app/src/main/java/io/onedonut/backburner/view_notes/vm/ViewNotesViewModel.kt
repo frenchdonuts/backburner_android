@@ -1,8 +1,11 @@
 package io.onedonut.backburner.view_notes.vm
 
+import android.util.Log
 import arrow.syntax.function.pipe
 import io.onedonut.backburner.view_notes.interactors.Interactors
 import io.onedonut.backburner.view_notes.ui.UI
+import io.onedonut.backburner.view_notes.ui.clearQueryIconIsVisible
+import io.onedonut.backburner.view_notes.ui.items
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
@@ -16,6 +19,12 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
         Observable.merge(listOf(
             shared.ofType(UI.Event.UiInitialized::class.java)
                 .switchMap { interactors.meditations() },
+            shared.ofType(UI.Event.SearchTextChanged::class.java)
+                .skip(1)
+                .switchMap { interactors.meditations() },
+            shared.ofType(UI.Event.SearchTextChanged::class.java)
+                .skip(1)
+                .map { Msg.ChangeClearQueryIconVisibility(it.query.isNotEmpty()) },
             shared.ofType(UI.Event.UiRecreated::class.java)
                 .map { Msg.NoOp }
         ))
@@ -35,7 +44,22 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
                                 it.text
                             )
                         }
-                    state.copy(uiState = state.uiState.copy(items = items))
+                    state
+                        .pipe { State.notes.set(it, msg.notes) }
+                        .pipe { State.uiState.items.set(it, items) }
+                }
+                is Msg.NotesSearchResult -> {
+                    val items = (if (msg.results.isEmpty()) state.notes else msg.results)
+                        .map {
+                            UI.Item(
+                                it.id,
+                                it.text
+                            )
+                        }
+                    State.uiState.items.set(state, items)
+                }
+                is Msg.ChangeClearQueryIconVisibility -> {
+                    State.uiState.clearQueryIconIsVisible.set(state, msg.isVisible)
                 }
                 is Msg.NoOp -> state
             }
@@ -55,8 +79,11 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
     init {
         eventsSubject
             .scan(uiInitializedFilter)
+//            .doOnNext { Log.d(TAG, "$it") }
             .pipe { toMsgs(it) }
+//            .doOnNext { Log.d(TAG, "msg: $it") }
             .pipe { computeStates(it) }
+//            .doOnNext { Log.d(TAG, "state: $it") }
             .map { it.uiState }
             .subscribe(statesSubject)
     }
@@ -66,5 +93,9 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
 
     override fun states(): Observable<UI.State> {
         return statesSubject
+    }
+
+    companion object {
+        private val TAG = "ViewNotesVM"
     }
 }

@@ -1,5 +1,7 @@
 package io.onedonut.backburner.view_notes.ui
 
+import arrow.optics.optics
+
 interface UI : io.onedonut.backburner.base.UI<UI.Event, UI.State> {
 
     sealed class Event {
@@ -8,7 +10,11 @@ interface UI : io.onedonut.backburner.base.UI<UI.Event, UI.State> {
         object UiRecreated : Event()
     }
 
-    data class State(val items: List<Item> = listOf())
+    @optics
+    data class State(
+        val items: List<Item> = listOf(),
+        val clearQueryIconIsVisible: Boolean = false
+    ) { companion object }
 
     data class Item(
         val id: String,
