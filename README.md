@@ -11,7 +11,6 @@ This is an app I've been thinking about making for a while. Its purpose is to re
 *     processEvents :: Observable<UI.Event> -> Unit
 *     states :: Unit -> Observable<UI.UIState>
 * Dependency graph for a given feature (Interactors, VM, UI):
-*     Data sources -> Repositories -> Interactors -> VM -> UI
 *     UI -> VM -> Interactors -> Repositories -> Data sources
 
 ## TODO
