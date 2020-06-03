@@ -49,7 +49,7 @@ class DatabaseTest {
         assertEquals(oneItem.size, 1)
         assertEquals(oneItem[0].text, rumiQuote)
 
-        val twoItems = queries.search("world").executeAsList()
+        val twoItems = queries.search("wo*").executeAsList()
             .map { it.text }
         assertEquals(twoItems.size, 2)
         assert(twoItems.containsAll(listOf(randomNote, rumiQuote)))

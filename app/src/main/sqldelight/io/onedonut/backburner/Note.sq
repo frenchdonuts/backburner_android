@@ -5,6 +5,7 @@ CREATE TABLE note (
 );
 
 CREATE VIRTUAL TABLE fts_note USING fts4(
+    tokenize=porter,
     content="note",
     text TEXT NOT NULL
 );
