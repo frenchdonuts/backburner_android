@@ -19,7 +19,7 @@ class DatabaseTest {
     }
 
     @Test
-    fun addMeditation() {
+    fun addNote() {
         val rumiQuote =
             """
                 |Out beyond ideas of wrongdoing and rightdoing there is a field. 
@@ -30,6 +30,28 @@ class DatabaseTest {
 
         val oneItem = queries.selectAll().executeAsList()
         assertEquals(oneItem.size, 1)
-        assertEquals(oneItem.first().text, rumiQuote)
+        assertEquals(oneItem[0].text, rumiQuote)
+    }
+
+    @Test
+    fun searchNotes() {
+        val rumiQuote =
+            """
+                |Out beyond ideas of wrongdoing and rightdoing there is a field. 
+                |I'll meet you there. When the soul lies down in that grass the 
+                |world is too full to talk about.
+            """.trimMargin()
+        val randomNote = "Hello world"
+        queries.insertNote(rumiQuote)
+        queries.insertNote(randomNote)
+
+        val oneItem = queries.search("when").executeAsList()
+        assertEquals(oneItem.size, 1)
+        assertEquals(oneItem[0].text, rumiQuote)
+
+        val twoItems = queries.search("world").executeAsList()
+            .map { it.text }
+        assertEquals(twoItems.size, 2)
+        assert(twoItems.containsAll(listOf(randomNote, rumiQuote)))
     }
 }

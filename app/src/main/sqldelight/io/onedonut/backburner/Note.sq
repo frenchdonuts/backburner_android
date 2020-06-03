@@ -4,6 +4,24 @@ CREATE TABLE note (
     created_at INTEGER NOT NULL DEFAULT (strftime('%s','now'))
 );
 
+CREATE VIRTUAL TABLE fts_note USING fts4(
+    content="note",
+    text TEXT NOT NULL
+);
+CREATE TRIGGER note_bu BEFORE UPDATE ON note BEGIN
+  DELETE FROM fts_note WHERE docid=old.rowid;
+END;
+CREATE TRIGGER note_bd BEFORE DELETE ON note BEGIN
+  DELETE FROM fts_note WHERE docid=old.rowid;
+END;
+
+CREATE TRIGGER note_au AFTER UPDATE ON note BEGIN
+  INSERT INTO fts_note(docid, text) VALUES(new.rowid, new.text);
+END;
+CREATE TRIGGER note_ai AFTER INSERT ON note BEGIN
+  INSERT INTO fts_note(docid, text) VALUES(new.rowid, new.text);
+END;
+
 insertNote:
 INSERT INTO note(text)
 VALUES (?);
@@ -20,4 +38,10 @@ WHERE id = :id;
 selectAll:
 SELECT *
 FROM note
+ORDER BY created_at DESC;
+
+search:
+SELECT *
+FROM note
+WHERE id IN (SELECT docid FROM fts_note WHERE text MATCH :query)
 ORDER BY created_at DESC;
