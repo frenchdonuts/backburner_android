@@ -6,6 +6,7 @@ import io.onedonut.backburner.Database
 import io.onedonut.backburner.model.Note
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
 class NoteRepositoryImpl(db: Database):
@@ -18,6 +19,16 @@ class NoteRepositoryImpl(db: Database):
             .asObservable(Schedulers.io())
             .mapToList()
             .map { it.map { Note.from(it) }  }
+    }
+
+    override fun search(query: String): Single<List<Note>> {
+        return queries
+            .search("$query*")
+            .asObservable()
+            .mapToList()
+            .map { it.map { Note.from(it) }  }
+            .take(1)
+            .singleOrError()
     }
 
     override fun create(text: String): Completable {

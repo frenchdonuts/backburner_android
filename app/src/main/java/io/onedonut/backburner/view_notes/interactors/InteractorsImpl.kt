@@ -1,5 +1,6 @@
 package io.onedonut.backburner.view_notes.interactors
 
+import android.util.Log
 import io.onedonut.backburner.dal.NoteRepository
 import io.onedonut.backburner.view_notes.vm.VM
 import io.reactivex.Observable
@@ -15,8 +16,10 @@ class InteractorsImpl @Inject constructor(val noteRepo: NoteRepository) :
     }
 
     override fun searchNotes(query: CharSequence): Single<VM.Msg> {
-        // TODO
-        return Single.just(VM.Msg.NotesSearchResult(listOf()))
+        Log.d(TAG, "query: $query")
+        return noteRepo.search(query.toString())
+            .doOnSuccess { Log.d(TAG, "$it") }
+            .map { VM.Msg.NotesSearchResult(it) }
     }
 
     companion object {
