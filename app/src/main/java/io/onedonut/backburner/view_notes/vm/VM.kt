@@ -11,7 +11,6 @@ abstract class VM: VM<UI.Event, UI.State>, ViewModel() {
     sealed class Msg {
         data class NotesLoaded(val notes: List<Note>) : Msg()
         data class NotesSearchResult(val results: List<Note>) : Msg()
-        data class ChangeClearQueryIconVisibility(val isVisible: Boolean) : Msg()
         object NoOp : Msg()
     }
 

@@ -1,10 +1,8 @@
 package io.onedonut.backburner.view_notes.vm
 
-import android.util.Log
 import arrow.syntax.function.pipe
 import io.onedonut.backburner.view_notes.interactors.Interactors
 import io.onedonut.backburner.view_notes.ui.UI
-import io.onedonut.backburner.view_notes.ui.clearQueryIconIsVisible
 import io.onedonut.backburner.view_notes.ui.items
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,9 +23,6 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
                 .skip(1)
                 .debounce(300, TimeUnit.MILLISECONDS, Schedulers.io())
                 .switchMapSingle { interactors.searchNotes(it.query) },
-            shared.ofType(UI.Event.SearchTextChanged::class.java)
-                .skip(1)
-                .map { Msg.ChangeClearQueryIconVisibility(it.query.isNotEmpty()) },
             shared.ofType(UI.Event.UiRecreated::class.java)
                 .map { Msg.NoOp }
         ))
@@ -60,9 +55,6 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
                             )
                         }
                     State.uiState.items.set(state, items)
-                }
-                is Msg.ChangeClearQueryIconVisibility -> {
-                    State.uiState.clearQueryIconIsVisible.set(state, msg.isVisible)
                 }
                 is Msg.NoOp -> state
             }

@@ -46,7 +46,6 @@
                 android:textSize="@dimen/search_text_size"
                 android:textColorHint="@color/textColor"
                 android:hint="@string/search_your_notes"
-                android:drawableRight="@drawable/ic_close_grey_24dp"
                 />
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>

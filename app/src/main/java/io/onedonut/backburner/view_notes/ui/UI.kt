@@ -12,8 +12,7 @@ interface UI : io.onedonut.backburner.base.UI<UI.Event, UI.State> {
 
     @optics
     data class State(
-        val items: List<Item> = listOf(),
-        val clearQueryIconIsVisible: Boolean = false
+        val items: List<Item> = listOf()
     ) { companion object }
 
     data class Item(

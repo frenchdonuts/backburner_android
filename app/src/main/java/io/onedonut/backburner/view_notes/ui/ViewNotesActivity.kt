@@ -1,16 +1,21 @@
 package io.onedonut.backburner.view_notes.ui
 
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jakewharton.rxbinding2.view.touches
 import com.jakewharton.rxbinding2.widget.textChanges
 import com.uber.autodispose.android.lifecycle.autoDispose
 import io.onedonut.backburner.App
+import io.onedonut.backburner.R
 import io.onedonut.backburner.base.createViewModel
 import io.onedonut.backburner.databinding.ActivityNotesBinding
 import io.onedonut.backburner.view_notes.ViewNotesComponent
@@ -34,7 +39,8 @@ class ViewNotesActivity: AppCompatActivity(), UI {
         Observable.merge(
             listOf(
                 Observable.just(UI.Event.UiInitialized),
-                etSearch.textChanges().map { UI.Event.SearchTextChanged(it) }
+                etSearch.textChanges()
+                    .map { UI.Event.SearchTextChanged(it) }
             )
         )
 
@@ -46,16 +52,62 @@ class ViewNotesActivity: AppCompatActivity(), UI {
             }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupViews() {
+        // Setup RecyclerView
         rvNotes.adapter = adapter
         rvNotes.layoutManager = StaggeredGridLayoutManager(
             2,
             StaggeredGridLayoutManager.VERTICAL
         )
+
+        setupEtSearch()
+
+        // Setup FAB
         fab.setOnClickListener {
             val intent = Intent(this, WriteNoteActivity::class.java)
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+            startActivity(intent, activityOptions)
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupEtSearch() {
+        etSearch.textChanges()
+            .map { it.isNotEmpty() }
+            .distinctUntilChanged()
+            .autoDispose(this)
+            .subscribe { etSearchDrawableIsVisible ->
+                if (etSearchDrawableIsVisible) {
+                    etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        R.drawable.ic_close_grey_24dp,
+                        0)
+                } else {
+                    etSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        0,
+                        0)
+                }
+            }
+
+        val RIGHT_DRAWABLE = 2
+        etSearch.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, ev: MotionEvent?): Boolean {
+                if (etSearch.compoundDrawables[RIGHT_DRAWABLE] == null) return false
+                if (ev?.action != MotionEvent.ACTION_UP) return false
+                val rightDrawableLeftBound =
+                    etSearch.right - etSearch.compoundDrawables[RIGHT_DRAWABLE].bounds.width()
+
+                if (ev.rawX >= rightDrawableLeftBound) {
+                    etSearch.text.clear()
+                }
+
+                return false
+            }
+        })
     }
 
     private fun connectViewModel() {
