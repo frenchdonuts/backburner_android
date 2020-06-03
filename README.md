@@ -40,8 +40,8 @@ This is an app I've been thinking about making for a while. Its purpose is to re
           - [x] Queue ScheduleReminderWorker
           - [ ] Check if ScheduleReminderWorker has already been queued before queuing
   - [ ] Implement RemindUserWorker
-          - [x] Inject Notifier service
-          - [ ] Inject NoteRepository
+      - [x] Inject Notifier service
+      - [ ] Inject NoteRepository
   - [x] Implement RemindUserWorker
   - [x] Use Dagger to inject dependencies
   - [x] Wrap everything up in a Dagger module
