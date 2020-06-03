@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:padding="12dp"
     android:layout_margin="3dp"
+    android:maxLines="12"
     android:background="@drawable/item_ripple"
+    android:ellipsize="end"
     android:textColor="@color/textColor"
     />
