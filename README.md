@@ -2,6 +2,53 @@
 
 This is an app I've been thinking about making for a while. Its purpose is to remind the user of notes left on the back-burner without desensitizing the user to the notifications (insta-dismiss). It does this by making sure the time interval between notifications is fairly long (7-14 days), and random. It also serves as a demonstration of my current understanding of Android architecture. The UI is taken from my favorite note taking app, Google Keep.
 
+## TODO
+
+- [x] Setup Data Access Layer(DAL) 
+  - [x] Setup SQLite db using SQLDelight
+      - [x] Create Note table
+      - [x] Write CRUD queries
+      - [x] Create virtual table using FTS4 + triggers to sync data
+      - [x] Write Search query
+      - [ ] Random note query
+  - [x] Create Note model class
+  - [x] Implement NoteRepository
+      - [x] CRUD + Search
+      - [ ] Random note
+  - [x] Wrap everything up in a Dagger module
+- [ ] Implement View Notes screen 
+  - [x] Activity + XML layout
+  - [x] Implement Interactors, VM, and UI
+  - [x] Use Dagger to inject dependencies
+  - [x] Create Dagger Subcomponent
+  - [ ] Wrap everything up in a Dagger module
+- [ ] Implement Write Note screen
+  - [x] Create Activity + XML layout
+  - [x] Implement Interactors, VM, and UI
+  - [x] Use Dagger to inject dependencies
+  - [x] Create Dagger Subcomponent
+  - [ ] Wrap everything up in a Dagger module
+- [ ] Implement random notifications
+  - [ ] Implement Notifier service
+      - [x] Implement notify()
+      - [ ] Define notification channel id
+  - [ ] Implement Scheduler service
+      - [ ] scheduleReminder()
+          - [x] Queue RemindUserWorker
+          - [ ] Check if RemindUserWorker has already been queued before queuing
+      - [ ] makeSureReminderIsScheduled()
+          - [x] Queue ScheduleReminderWorker
+          - [ ] Check if ScheduleReminderWorker has already been queued before queuing
+  - [ ] Implement RemindUserWorker
+          - [x] Inject Notifier service
+          - [ ] Inject NoteRepository
+  - [x] Implement RemindUserWorker
+  - [x] Use Dagger to inject dependencies
+  - [x] Wrap everything up in a Dagger module
+- [ ] Using dagger.android to cleanup injection code
+- [ ] Import pinned Google Keep notes
+- [ ] Allow User to customize the range of time interval between notifications.
+
 ## General architecture
 
 * UI interface: Implementers emit UI events and read off the State that has been computed, turning them into side-effects that render to screen.
@@ -12,14 +59,3 @@ This is an app I've been thinking about making for a while. Its purpose is to re
 *     states :: Unit -> Observable<UI.UIState>
 * Dependency graph for a given feature (Interactors, VM, UI):
 *     UI -> VM -> Interactors -> Repositories -> Data sources
-
-## TODO
-
-- [x] Integrate SQLDelight and create Note table + queries
-- [x] Implement data flow for Notes screen 
-- [ ] Implement data flow for WriteNote screen
-- [ ] Implement random notifications
-- [ ] Refine UX and UI
-- [x] Use Dagger to inject dependencies
-- [ ] Import pinned Google Keep notes
-- [ ] Allow User to customize the range of time interval between notifications.
