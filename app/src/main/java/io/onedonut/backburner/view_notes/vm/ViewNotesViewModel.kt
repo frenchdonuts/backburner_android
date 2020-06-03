@@ -9,8 +9,10 @@ import io.onedonut.backburner.view_notes.ui.items
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM() {
@@ -21,7 +23,8 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
                 .switchMap { interactors.meditations() },
             shared.ofType(UI.Event.SearchTextChanged::class.java)
                 .skip(1)
-                .switchMap { interactors.meditations() },
+                .debounce(300, TimeUnit.MILLISECONDS, Schedulers.io())
+                .switchMapSingle { interactors.searchNotes(it.query) },
             shared.ofType(UI.Event.SearchTextChanged::class.java)
                 .skip(1)
                 .map { Msg.ChangeClearQueryIconVisibility(it.query.isNotEmpty()) },
