@@ -18,6 +18,17 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         />
 
+    <TextView
+        android:id="@+id/tvEmptySearchResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        android:textColor="@color/textColor"
+        android:text="@string/no_notes_match_that_query"
+        />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

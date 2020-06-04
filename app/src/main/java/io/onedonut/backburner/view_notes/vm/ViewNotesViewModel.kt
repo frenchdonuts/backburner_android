@@ -3,8 +3,10 @@ package io.onedonut.backburner.view_notes.vm
 import arrow.syntax.function.pipe
 import io.onedonut.backburner.view_notes.interactors.Interactors
 import io.onedonut.backburner.view_notes.ui.UI
+import io.onedonut.backburner.view_notes.ui.emptySearchViewIsVisible
 import io.onedonut.backburner.view_notes.ui.items
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +24,7 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
             shared.ofType(UI.Event.SearchTextChanged::class.java)
                 .skip(1)
                 .debounce(300, TimeUnit.MILLISECONDS, Schedulers.io())
-                .switchMapSingle { interactors.searchNotes(it.query) },
+                .switchMapSingle { interactors.searchNotes(it.query.toString()) },
             shared.ofType(UI.Event.UiRecreated::class.java)
                 .map { Msg.NoOp }
         ))
@@ -47,14 +49,21 @@ class ViewNotesViewModel @Inject constructor(val interactors: Interactors) : VM(
                         .pipe { State.uiState.items.set(it, items) }
                 }
                 is Msg.NotesSearchResult -> {
-                    val items = (if (msg.results.isEmpty()) state.notes else msg.results)
+                    val items = (if (msg.query.isNotEmpty()) msg.results else state.notes)
                         .map {
                             UI.Item(
                                 it.id,
                                 it.text
                             )
                         }
+                    val emptySearchViewVisibility =
+                        if (msg.query.isNotEmpty())
+                            items.isEmpty()
+                        else
+                            false
+
                     State.uiState.items.set(state, items)
+                        .pipe { State.uiState.emptySearchViewIsVisible.set(it, emptySearchViewVisibility) }
                 }
                 is Msg.NoOp -> state
             }

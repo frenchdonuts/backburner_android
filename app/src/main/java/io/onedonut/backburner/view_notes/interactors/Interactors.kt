@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 interface Interactors {
     fun meditations(): Observable<VM.Msg>
-    fun searchNotes(query: CharSequence): Single<VM.Msg>
+    fun searchNotes(query: String): Single<VM.Msg>
 }

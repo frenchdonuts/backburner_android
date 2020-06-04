@@ -15,11 +15,10 @@ class InteractorsImpl @Inject constructor(val noteRepo: NoteRepository) :
             .map { VM.Msg.NotesLoaded(it) }
     }
 
-    override fun searchNotes(query: CharSequence): Single<VM.Msg> {
-        Log.d(TAG, "query: $query")
-        return noteRepo.search(query.toString())
+    override fun searchNotes(query: String): Single<VM.Msg> {
+        return noteRepo.search(query)
             .doOnSuccess { Log.d(TAG, "$it") }
-            .map { VM.Msg.NotesSearchResult(it) }
+            .map { VM.Msg.NotesSearchResult(it, query) }
     }
 
     companion object {

@@ -10,7 +10,7 @@ abstract class VM: VM<UI.Event, UI.State>, ViewModel() {
     //
     sealed class Msg {
         data class NotesLoaded(val notes: List<Note>) : Msg()
-        data class NotesSearchResult(val results: List<Note>) : Msg()
+        data class NotesSearchResult(val results: List<Note>, val query: String) : Msg()
         object NoOp : Msg()
     }
 

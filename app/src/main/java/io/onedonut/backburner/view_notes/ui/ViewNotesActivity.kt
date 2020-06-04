@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -28,6 +29,8 @@ class ViewNotesActivity: AppCompatActivity(), UI {
 
     private val etSearch: EditText
         get() = binding.etSearch
+    private val tvEmptySearchResults: TextView
+        get() = binding.tvEmptySearchResults
     private val rvNotes: RecyclerView
         get() = binding.rvNotes
     private val adapter: NotesAdapter =
@@ -49,6 +52,14 @@ class ViewNotesActivity: AppCompatActivity(), UI {
             .autoDispose(this)
             .subscribe { meditationItems ->
                 adapter.submitList(meditationItems)
+            }
+        states.map { it.emptySearchViewIsVisible }
+            .distinctUntilChanged()
+            .autoDispose(this)
+            .subscribe {
+                tvEmptySearchResults.visibility =
+                    if (it) View.VISIBLE
+                    else View.INVISIBLE
             }
     }
 

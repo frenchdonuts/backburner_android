@@ -10,4 +10,5 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="search_your_notes"><font size="16">Search your notes</font></string>
+    <string name="no_notes_match_that_query">No notes match that query</string>
 </resources>
