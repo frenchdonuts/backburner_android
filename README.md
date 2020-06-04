@@ -53,7 +53,7 @@ This is an app I've been thinking about making for a while. Its purpose is to re
       - [ ] Inject NoteRepository
       - [ ] Implement logic
   - [x] Implement ScheduleReminderWorker
-- [ ] Using dagger.android to cleanup injection code
+- [ ] Use dagger.android to cleanup injection code
 - [ ] Import pinned Google Keep notes
 - [ ] Allow User to customize the range of time interval between notifications.
 - [ ] Experiment porting over to [Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture)
