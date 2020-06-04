@@ -17,14 +17,21 @@ This is an app I've been thinking about making for a while. Its purpose is to re
       - [ ] Random note
   - [x] Wrap everything up in a Dagger module
 - [ ] Implement View Notes screen 
-  - [x] Activity + XML layout
-  - [x] Implement Interactors, VM, and UI
+  - [x] Fetch Notes and display them
+  - [x] Search notes
+  - [x] Navigate to Write Note screen when fab is tapped
+  - [ ] Navigate to Write Note screen when a note is tapped with shared element animations
   - [x] Use Dagger to inject dependencies
   - [x] Create Dagger Subcomponent
   - [ ] Wrap everything up in a Dagger module
+  - [ ] XML layout for landscape mode
 - [ ] Implement Write Note screen
-  - [x] Create Activity + XML layout
-  - [x] Implement Interactors, VM, and UI
+  - [x] Create note
+  - [ ] Have EditText take up whole screen
+  - [ ] Save note on back navigation
+  - [ ] Proper transition animation w/ shared elements on back navigation
+  - [ ] Edit note
+  - [ ] Delete note
   - [x] Use Dagger to inject dependencies
   - [x] Create Dagger Subcomponent
   - [ ] Wrap everything up in a Dagger module
@@ -39,12 +46,12 @@ This is an app I've been thinking about making for a while. Its purpose is to re
       - [ ] makeSureReminderIsScheduled()
           - [x] Queue ScheduleReminderWorker
           - [ ] Check if ScheduleReminderWorker has already been queued before queuing
+  - [x] Create scaffolding to allow Dagger to inject into Workers
   - [ ] Implement RemindUserWorker
       - [x] Inject Notifier service
       - [ ] Inject NoteRepository
-  - [x] Implement RemindUserWorker
-  - [x] Use Dagger to inject dependencies
-  - [x] Wrap everything up in a Dagger module
+      - [ ] Implement logic
+  - [x] Implement ScheduleReminderWorker
 - [ ] Using dagger.android to cleanup injection code
 - [ ] Import pinned Google Keep notes
 - [ ] Allow User to customize the range of time interval between notifications.
