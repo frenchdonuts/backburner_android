@@ -27,6 +27,7 @@ This is an app I've been thinking about making for a while. Its purpose is to re
   - [ ] XML layout for landscape mode
 - [ ] Implement Write Note screen
   - [x] Create note
+  - [x] Proper enter transition animation
   - [ ] Have EditText take up whole screen
   - [ ] Save note on back navigation
   - [ ] Proper transition animation w/ shared elements on back navigation
@@ -61,7 +62,7 @@ This is an app I've been thinking about making for a while. Its purpose is to re
 * UI interface: Implementers emit UI events and read off the State that has been computed, turning them into side-effects that render to screen.
 *     events :: Unit -> Observable<UI.Event>
 *     render :: Observable<UI.UIState> -> Unit
-* VM interface: Implementers transform UI events into business-logic Msgs and reduce on those Msgs w/ current state.
+* VM interface: Implementers (usually subclasses of lifecycle ViewModel) transform UI events into business-logic Msgs and reduce on those Msgs w/ current state.
 *     processEvents :: Observable<UI.Event> -> Unit
 *     states :: Unit -> Observable<UI.UIState>
 * Dependency graph for a given feature (Interactors, VM, UI):
