@@ -28,9 +28,11 @@ This is an app I've been thinking about making for a while. Its purpose is to re
 - [ ] Implement Write Note screen
   - [x] Create note
   - [x] Proper enter transition animation
-  - [ ] Have EditText take up whole screen
+  - [x] Refine UI
+    - [ ] Have EditText take up whole screen
+    - [ ] Proper transition animation w/ shared elements on back navigation
+    - [ ] Remove "Add Note" button
   - [ ] Save note on back navigation
-  - [ ] Proper transition animation w/ shared elements on back navigation
   - [ ] Edit note
   - [ ] Delete note
   - [x] Use Dagger to inject dependencies
